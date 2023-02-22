@@ -1,0 +1,4 @@
+<div class="paymentContainer">
+    <app-paypal *ngIf="actType == 'paypal' && orphenage"></app-paypal>
+    <app-stripe *ngIf="actType == 'stripe' && orphenage" [orphanageData]="orphenage"></app-stripe>
+</div>

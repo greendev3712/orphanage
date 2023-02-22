@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="my-5 text-center">
+        <h2 class=" text-uppercase text-center">User <span class=" text-theme-colored"> profile</span></h2>
+      
+    </div>
+    <div class="row">
+        <div class="col-12">
+    
+                <!-- <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+
+                        <label class="text-color">First name<span class="text-danger"> *</span>
+                        </label>
+
+                        <input type="text" id="user.fname" [(ngModel)]="user.fname" class="form-control" name="fname"
+                            placeholder="Enter your first name">
+                    </div>
+
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Last name<span class="text-danger"> *</span></label>
+                        <input type="text" id="user.lname" name="lname" class="form-control"
+                            placeholder="Enter your last name">
+                    </div>
+                </div> -->
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Email<span class="text-danger"> *</span></label>
+                        <input type="text" id="email" [(ngModel)]="user.email" name="email" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">UserName<span class="text-danger"> *</span></label>
+                        <input type="text" id="username" [(ngModel)]="user.username" name="email" class="form-control" placeholder="">
+                    </div>
+
+                  
+                </div>
+
+                <div class="row justify-content-between text-left">
+
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Phone number<span class="text-danger"> *</span></label>
+                        <input type="text" id="mob" [(ngModel)]="user.phone_no" name="mob" placeholder="" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Password<span class="text-danger"> *</span></label>
+                        <input type="password" id="passe" [(ngModel)]="user.password" name="passe" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Confiramtion Password<span class="text-danger"> *</span></label>
+                        <input type="password" id="passeConfi" [(ngModel)]="user.passeConfi" name="passeConfi" placeholder="" class="form-control">
+                    </div>
+                </div>
+
+
+                <div class="row mt-4">
+                    <div class="col-12 text-right">
+                        <a class="btn btn-colored btn-theme-colored btn-flat smooth-scroll-to-target"
+                           (click)="save(user)">Save</a>
+                    </div>
+                </div>
+
+        
+        </div>
+    </div>
+</div>

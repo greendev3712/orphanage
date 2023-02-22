@@ -1,0 +1,114 @@
+<div class="container">
+    <h2 class="my-5 text-uppercase text-center">Contact <span class=" text-theme-colored">Us.</span></h2>
+
+    <div class="row" *ngIf="!token.getUser().is_admin">
+        <div class="col-12">
+
+            <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-6 flex-column d-flex">
+
+                    <label class="text-color">First name<span class="text-danger"> *</span>
+                    </label>
+
+                    <input type="text" id="fname" [(ngModel)]="message.first_name" class="form-control"
+                        name="first_name" placeholder="Enter your first name">
+                </div>
+
+                <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="text-color">Last name<span class="text-danger"> *</span></label>
+                    <input type="text" id="lname" [(ngModel)]="message.last_name" name="last_name" class="form-control"
+                        placeholder="Enter your last name">
+                </div>
+            </div>
+            <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="text-color">Email<span class="text-danger"> *</span></label>
+                    <input type="text" id="email" name="email" [(ngModel)]="message.email" class="form-control"
+                        placeholder="">
+                </div>
+
+                <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="text-color">Phone number<span class="text-danger"> *</span></label>
+                    <input type="text" id="mob" name="phone_no" [(ngModel)]="message.phone_no" placeholder=""
+                        class="form-control">
+                </div>
+            </div>
+
+            <div class="row justify-content-between text-left">
+                <div class="form-group col-12 flex-column d-flex">
+                    <label class="text-color">Type your message here<span class="text-danger"> *</span></label>
+                    <textarea name="content" cols="30" rows="10" [(ngModel)]="message.content"
+                        class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <i class="far mr-2 fa-envelope-open"></i>
+                        <span>
+                            divyansh4114@gmail.com
+                        </span>
+                    </div>
+                    <div>
+                        <i class="fas mr-2 fa-phone-alt"></i>
+                        <span>
+                            +91 7820990746
+                        </span>
+                    </div>
+
+                </div>
+                <div class="col-6 text-right">
+                    <a (click)="sendMessage(message)"
+                        class="btn btn-colored btn-theme-colored btn-flat smooth-scroll-to-target">Contact</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row" *ngIf="token.getUser().is_admin">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>first_name</td>
+                        <td>last_name</td>
+                        <td>phone_no</td>
+                        <td>Email</td>
+                        <td>Content</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                    *ngFor="
+                        let message of Messages
+                        | paginate
+                            : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                            };
+                        let i = index
+                    "
+                    >
+                    <td>{{message.first_name}}</td>
+                    <td>{{message.last_name}}</td>
+                    <td>{{message.phone_no}}</td>
+                    <td>{{message.email}}</td>
+                    <td>{{message.content}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                <pagination-controls
+                    previousLabel="Prev"
+                    nextLabel="Next"
+                    (pageChange)="onTableDataChange($event)"
+                >
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

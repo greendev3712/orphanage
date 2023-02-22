@@ -1,0 +1,114 @@
+<app-header></app-header>
+
+
+
+<div style="min-height: calc(100% - 120px);margin-top: 120px;">
+  <div class="row mx-0">
+    <div class="col-12 px-0">
+      <router-outlet></router-outlet>
+
+      <div *ngIf="globalService.showMenu || globalService.donate" (click)="removeMenuSm()"
+        style="height: 100%;width: 100%;height: 100%;width: 100%;position: fixed;top: 0px;z-index: 999;background: #00000066;">
+
+      </div>
+      <!-- *ngIf="" -->
+      <div class="d-lg-none" [ngStyle]="{ left: globalService.showMenu ? '0px' : '-80%' }"
+        style=" transition: .3s all ease;height: 100%;width: 80%;position: fixed;top: 120px;z-index: 9999;background-color:  #f5f5f5;">
+        <ul class="site-menu-sm px-0 ">
+          <li style="border-top:1px solid #ddd ;"><a (click)="removeMenuSm()" routerLink="/" class="nav-link">Home</a>
+          </li>
+          <li><a (click)="removeMenuSm()" routerLink="orphenages" class="nav-link">Donation</a></li>
+          <!-- <li><a (click)="globalService.where = ''" routerLink="signUp" class="nav-link">Sign-Up</a></li> -->
+          <li><a (click)="removeMenuSm()" routerLink="aboutUs" class="nav-link">About Us</a></li>
+          <li><a (click)="removeMenuSm()" routerLink="contactUs" class="nav-link">Contact Us</a></li>
+          <li><a (click)="removeMenuSm()" routerLink="login" class="nav-link">Login</a></li>
+
+        </ul>
+        <div style="padding: 1rem 1rem;">
+          <button (click)="removeMenuSm()" routerLink="signUp" class="btn btn-colored btn-theme-colored  w-100">Sign
+            Up</button>
+        </div>
+      </div>
+
+
+      <div [ngClass]="globalService.donate ? 'my-open' : 'my-close'" class="my-width"
+        style=" transition: .3s all ease;height: calc(100% - 120px);position: fixed;top: 120px;z-index: 9999;background-color:  #f5f5f5;padding: 15px;border-top: 1px solid #cccccc;overflow: auto;">
+        <div class="my-2 d-flex " style="justify-content: space-between;">
+          <h6 class="text-theme-colored" [routerLink]="['orphenages/orphanageDetail']"
+            style="cursor: pointer;font-weight: 400;font-size: 18px;text-align: center;text-transform: capitalize;">
+            {{orphanage.name}}</h6>
+          <svg (click)="globalService.donate = false" style="height: 21px;" fill="#546e7a"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
+            <path
+              d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
+          </svg>
+        </div>
+        <div class="form-group participation mt-4">
+
+          <!-- <div class="input-group center-block wi-input" style="margin: auto;align-items: center; border: 1px solid #cecece;border-radius: 3px;">
+         <input 
+          (input)="renitialiseCotisation()"
+          [(ngModel)]="cotisation" 
+          type="tel" id="amount" 
+          style="background-color: #f1f1f1;border: 0px;color: #000;font-size: 20px;font-weight: 500;text-align: center;" 
+          name="amount" required="required" placeholder="0" autocomplete="off" maxlength="8"
+            class="form-control" /> 
+
+           <div class="input-group-addon"><span id="container-currency">€</span></div> 
+        </div> -->
+          <div class="pr-3 pb-3 "> By Paypal: </div>
+          <div class="text-center">
+
+            <!-- <a target="_blank" (click)="opennewindow()" class="btn  btn-theme-colored">Donate Now</a> -->
+          </div>
+
+          <app-paypal></app-paypal>
+        </div>
+
+        <!-- <div #myPaypalButtons></div> -->
+        <div class="pr-3 pt-3 "> By Card: </div>
+        <div id="app" class="mt-2" style="    white-space: pre-wrap;word-wrap: break-word;">
+          <!-- <ngx-paypal *ngIf="globalService.donate" [config]="payPalConfig"></ngx-paypal> -->
+          <!-- <iframe [src]="paypal_info | safe:'resourceUrl' " frameborder="0"></iframe> -->
+
+          {{orphanage.bank_info}}
+        </div>
+
+        <!-- <div class="mt-5 " >
+        <span>20% </span>   <svg class="d-none d-lg-inline-block" style="width: 13px;margin: 0px 8px;" fill="#dc6868" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg> 
+        <span>to support Orphanage.com</span> 
+        <svg class="d-none d-lg-inline-block" style="width: 13px;margin: 0px 8px;" fill="#dc6868" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg> 
+      </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="top-bar mt-5" style="height: 40px;">
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+        <a href="mailto:thegodshand4@gmail.com" class="">
+          <i class="far mr-2 fa-envelope-open"></i>
+          <span class="d-none d-md-inline-block">thegodshand4@gmail.com</span>
+        </a>
+        <span class="mx-md-2 d-inline-block"></span>
+        <a href="#" class="">
+          <i class="fas mr-2 fa-phone-alt"></i>
+          <span class="d-none d-md-inline-block">+91 7820990746</span></a>
+        <div class="float-right">
+          <a target="_blank" href="https://twitter.com/thegodshand4" class=""><i class="fab mr-2 fa-twitter"></i><span
+              class="d-none d-md-inline-block">Twitter</span></a>
+          <span class="mx-md-2 d-inline-block"></span>
+          <a target="_blank" href="https://www.instagram.com/thegodshand_" class="">
+            <i class="fab mr-2  fa-instagram"></i>
+            <span class="d-none d-md-inline-block">Instagram</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

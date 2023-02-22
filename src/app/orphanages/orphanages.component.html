@@ -1,0 +1,296 @@
+<div class="container">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-md-auto">
+                <div class="d-flex my-5" [ngStyle]="{'justify-content': token.getUser().is_admin ?'space-between':'center' }">
+                    <h2 class=" text-uppercase ">Our <span class=" text-theme-colored"> ORGANISATIONS.</span></h2>
+                    <button class="btn btn-theme-colored" (click)="clearOrphonageCache();globalService.triggerModal(modalData);" *ngIf="token.getUser().is_admin">Add Orphanage</button>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="input-group d-flex my-5" *ngIf="!token.getUser().is_admin">
+                    <div class="form-outline">
+                        <input type="search" (keydown.enter)="setSearchOrphonage()" [(ngModel)]="selected_country" class="form-control" list="datalistOptions" placeholder="Search country" />
+                        <datalist id="datalistOptions">
+                  <div *ngFor="let country of search_countries">
+                        <option value="{{country}}">
+                  </div>
+                  </datalist>
+                    </div>
+                    <button (click)="setSearchOrphonage()" type="button" class="btn btn-primary btn-theme-colored ml-1">
+                  <i class="fas fa-search"></i>
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-12 col-lg-4 pt-3 my-lg-0" (click)="globalService.where = ''"
+            *ngFor="let orphonage of this.globalService.global_orphonages | arraysort :'id'" style="height:auto">
+            <div style="box-shadow: 0px 0px 3px 2px #ddd;height: 100%;border-radius: 10px;">
+                <div style="height: 180px;position: relative;background-color: #000000;">
+                    
+                    <div class="text-right " style="position: absolute;top:10px;right: 15px;"
+                        *ngIf="token.getUser().is_admin">
+                        
+                        <span (click)="file.click();modelorphonage=orphonage"
+                            style="height: 50px;width: 50px;background-color: rgba(0, 0, 0, 0.336);border-radius: 50%;text-align: center;line-height: 42px;display: inline-block;">
+                            <svg style="height: 24px;fill:#fff" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512">
+                                <path
+                                    d="M256 408c-66.2 0-120-53.8-120-120s53.8-120 120-120 120 53.8 120 120-53.8 120-120 120zm0-192c-39.7 0-72 32.3-72 72s32.3 72 72 72 72-32.3 72-72-32.3-72-72-72zm-24 72c0-13.2 10.8-24 24-24 8.8 0 16-7.2 16-16s-7.2-16-16-16c-30.9 0-56 25.1-56 56 0 8.8 7.2 16 16 16s16-7.2 16-16zm110.7-145H464v288H48V143h121.3l24-64h125.5l23.9 64zM324.3 31h-131c-20 0-37.9 12.4-44.9 31.1L136 95H48c-26.5 0-48 21.5-48 48v288c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V143c0-26.5-21.5-48-48-48h-88l-14.3-38c-5.8-15.7-20.7-26-37.4-26z" />
+                            </svg>
+                        </span>
+                        <input #file type="file" style="display: none;" (change)="onFileChange($event)" class="form-control" name="">
+                    </div>
+                    <!-- {{orphonage.photos_links |json}} -->
+
+                    <div *ngIf="orphonage.photos_links && orphonage.photos_links.length != 0" (click)="goToDetails(orphonage)"
+                    [ngStyle]="{'background-image':'url('+globalService.web_site+orphonage.photos_links[0].filepath+')'}"
+                        style="cursor: pointer;height: 100%;background-position: center;background-size: contain;background-repeat: no-repeat;border-top-left-radius: 10px;border-top-right-radius: 10px;">
+
+                    </div>
+                </div>
+                <div class="px-2 py-3" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+
+                    <div>
+                        <div class="d-flex" style="align-items: center;justify-content: space-between;">
+
+                            <span *ngIf="token.getUser().is_admin" (click)="modelorphonage=orphonage;update=true;globalService.triggerModal(modalData)" style="display: inline;cursor: pointer;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                    style="height: 18px;fill: #c30000;">
+                                    <path
+                                        d="M493.25 56.26l-37.51-37.51C443.25 6.25 426.87 0 410.49 0s-32.76 6.25-45.26 18.74L12.85 371.12.15 485.34C-1.45 499.72 9.88 512 23.95 512c.89 0 1.78-.05 2.69-.15l114.14-12.61 352.48-352.48c24.99-24.99 24.99-65.51-.01-90.5zM126.09 468.68l-93.03 10.31 10.36-93.17 263.89-263.89 82.77 82.77-263.99 263.98zm344.54-344.54l-57.93 57.93-82.77-82.77 57.93-57.93c6.04-6.04 14.08-9.37 22.63-9.37 8.55 0 16.58 3.33 22.63 9.37l37.51 37.51c12.47 12.48 12.47 32.78 0 45.26z" />
+                                </svg>
+                            </span>
+                            <!-- Heading -->
+                            <h5 class="text-theme-colored mb-0" (click)="goToDetails(orphonage)"
+                                style="cursor:pointer;width: 100%; font-weight: 500;font-size: 19px;text-align: center;text-transform: capitalize; height: 60px; color:rgba(0, 140, 155, 1) !important">
+                                {{globalService.getSize("Your support will help for poor vulnerable children.",55)}}
+                            </h5>
+
+                            <!-- <span *ngIf="token.getUser().is_admin" (click)="deleteOrphonage(orphonage.id)"
+                                style="display: inline;cursor: pointer;"><svg style="height: 18px;fill: #c30000;"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path
+                                        d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z" />
+                                </svg>
+                            </span> -->
+
+                        </div>
+                    </div>
+                    <!-- THE NAME OF
+THE CHARITY WHO IS RUNNING THIS CAMPAIGN -->
+                    <div class="ml-1 mt-3 row" style="align-items: center;">
+                        <img style="width: 30px !important; margin-left: 10px;" src="../../assets/by_icon.jpg"/>
+                        <span style="font-size: 14px;max-width: 296px;" class="text-color; mx-1">{{"by " + orphonage.name}}
+                        </span>
+                    </div>
+
+                    <!-- <div class="mt-2">
+                        <span style="font-size: 14px;" class="text-color">{{globalService.getSize(orphonage.story,20)}}
+                        </span>
+                    </div>
+                    <div>
+                        <span style="font-size:15px;">
+                            <svg style="width: 18px;" class="svg-inline--fa fa-users" aria-hidden="true"
+                                focusable="false" data-prefix="fas" data-icon="users" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                    d="M319.9 320c57.41 0 103.1-46.56 103.1-104c0-57.44-46.54-104-103.1-104c-57.41 0-103.1 46.56-103.1 104C215.9 273.4 262.5 320 319.9 320zM369.9 352H270.1C191.6 352 128 411.7 128 485.3C128 500.1 140.7 512 156.4 512h327.2C499.3 512 512 500.1 512 485.3C512 411.7 448.4 352 369.9 352zM512 160c44.18 0 80-35.82 80-80S556.2 0 512 0c-44.18 0-80 35.82-80 80S467.8 160 512 160zM183.9 216c0-5.449 .9824-10.63 1.609-15.91C174.6 194.1 162.6 192 149.9 192H88.08C39.44 192 0 233.8 0 285.3C0 295.6 7.887 304 17.62 304h199.5C196.7 280.2 183.9 249.7 183.9 216zM128 160c44.18 0 80-35.82 80-80S172.2 0 128 0C83.82 0 48 35.82 48 80S83.82 160 128 160zM551.9 192h-61.84c-12.8 0-24.88 3.037-35.86 8.24C454.8 205.5 455.8 210.6 455.8 216c0 33.71-12.78 64.21-33.16 88h199.7C632.1 304 640 295.6 640 285.3C640 233.8 600.6 192 551.9 192z">
+                                </path>
+                            </svg>
+                            <span style="padding-left:5px;opacity:0.7">{{orphonage.students}} Students</span>
+                        </span>
+                    </div>
+                    <div>
+                        <span style="font-size:15px;">
+                            <svg style="width: 14px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path
+                                    d="M494.586 164.516c-4.697-3.883-111.723-89.95-135.251-108.657C337.231 38.191 299.437 0 256 0c-43.205 0-80.636 37.717-103.335 55.859-24.463 19.45-131.07 105.195-135.15 108.549A48.004 48.004 0 0 0 0 201.485V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V201.509a48 48 0 0 0-17.414-36.993zM464 458a6 6 0 0 1-6 6H54a6 6 0 0 1-6-6V204.347c0-1.813.816-3.526 2.226-4.665 15.87-12.814 108.793-87.554 132.364-106.293C200.755 78.88 232.398 48 256 48c23.693 0 55.857 31.369 73.41 45.389 23.573 18.741 116.503 93.493 132.366 106.316a5.99 5.99 0 0 1 2.224 4.663V458zm-31.991-187.704c4.249 5.159 3.465 12.795-1.745 16.981-28.975 23.283-59.274 47.597-70.929 56.863C336.636 362.283 299.205 400 256 400c-43.452 0-81.287-38.237-103.335-55.86-11.279-8.967-41.744-33.413-70.927-56.865-5.21-4.187-5.993-11.822-1.745-16.981l15.258-18.528c4.178-5.073 11.657-5.843 16.779-1.726 28.618 23.001 58.566 47.035 70.56 56.571C200.143 320.631 232.307 352 256 352c23.602 0 55.246-30.88 73.41-45.389 11.994-9.535 41.944-33.57 70.563-56.568 5.122-4.116 12.601-3.346 16.778 1.727l15.258 18.526z" />
+                            </svg>
+                            <span style="padding-left:8px;opacity:0.7">{{orphonage.email}}</span>
+                        </span>
+                    </div>
+                    <div class="mt-2" style="height: 50px">
+                        <span style="font-size:15px;">
+                            <svg style="width: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                <path
+                                    d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" />
+                            </svg>
+                            <span style="padding-left:12px;opacity:0.7">{{orphonage.location}}</span>
+                        </span>
+                    </div> -->
+
+                    <div class="mt-3  d-flex" style="justify-content: space-between;">
+                        <a class="btn btn-theme-colored" (click)="goToDonate(orphonage)">Donate Now</a>
+                        <a class="btn btn-theme-colored" (click)="goToDetails(orphonage)">More Info </a>
+                        <a class="btn btn-theme-colored" *ngIf="token.getUser().is_admin" (click)="orphanage_donations(orphonage,modal_orphanage_donations)"><i
+                                class="fas fa-eye"></i></a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" *ngIf="!update">Add Orphanage</h4>
+        <h4 class="modal-title" id="modal-basic-title" *ngIf="update">Update Orphanage</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-6">
+                <div class="mt-3">
+                    <label for="">certidicate</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.registration_certificate" maxlength="55">
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.name" maxlength="55">
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.email">
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Students</label>
+                    <input type="number" class="form-control" [(ngModel)]="modelorphonage.students">
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Phone number</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.phone_no">
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Country</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.country" maxlength="90">
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Location</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.location">
+                    <!--<app-autocomplete (setAddress)="getAddress($event)" adressType="geocode"></app-autocomplete>-->
+                    <!-- <input ngx-google-places-autocomplete [options]='options' class="form-control" [(ngModel)]="orphonage.location"  (onAddressChange)="AddressChange($event)"/> -->
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Social media links</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.social_media_links.social_media_links">
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Monthly Donation</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.monthly_donation" maxlength="90">
+                </div>
+
+            </div>
+            <div class="col-6">
+                <!-- <div class="mt-3">
+                    <label for="">Paypal information</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.paypal_info.paypal_info">
+                </div> -->
+
+                <div class="mt-3">
+                    <label for="">Story</label>
+                    <angular-editor placeholder="'Enter text here...'" [config]="storyConfig" [(ngModel)]="modelorphonage.story"></angular-editor>
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Activities</label>
+                    <angular-editor placeholder="'Enter text here...'" [config]="storyConfig" [(ngModel)]="modelorphonage.activities"></angular-editor>
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Money uses</label>
+                    <angular-editor placeholder="'Enter text here...'" [config]="storyConfig" [(ngModel)]="modelorphonage.money_uses"></angular-editor>
+                </div>
+
+                <div class="mt-3">
+                    <label for="">Blog Link</label>
+                    <input type="text" class="form-control" [(ngModel)]="modelorphonage.blog_link" maxlength="55">
+                </div>
+
+
+                <!-- <div class="mt-3">
+                    <label for="">Bank info</label>
+                    <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="BANK ADDRESS
+BANK NAME
+CODE 20
+BRANCH 473
+ACCOUNT 207535
+SWIFT XXXXXXXXXXX
+IBAN XX xxxxxxxxxxxxx" [(ngModel)]="modelorphonage.bank_info"></textarea>
+                </div> -->
+            </div>
+
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <select [(ngModel)]="modelorphonage.acttype" placeholder="Account Type" class="form-control form-select mt-3">
+                    <option value="paypal">Paypal</option>
+                    <option value="stripe" selected>Stripe</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <input placeholder="Account ID" class="form-control mt-3" type="text" [(ngModel)]="modelorphonage.actId">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-theme-colored" style="min-width: 25%;" (click)="update ? updateOrphonage() : save()">Save</button>
+    </div>
+</ng-template>
+
+
+<ng-template #modal_orphanage_donations let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Orphanage </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row mb-3">
+            <h5 class="col text-theme-colored">
+                {{donnationOrphanage.orphanage_name}}
+            </h5>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-sm table-bordered">
+                    <tr>
+                        <td>Amount</td>
+                        <td>Date</td>
+                        <td>Donor</td>
+                    </tr>
+                    <tr *ngFor="let donnation of donnationOrphanage.donations">
+                        <td>{{donnation.amount}}</td>
+                        <td>{{donnation.donation_time}}</td>
+                        <td>{{donnation.donor}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</ng-template>

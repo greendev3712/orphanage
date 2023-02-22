@@ -1,0 +1,91 @@
+.stripePaymentContainer {
+    display: flex;
+    font-size: 14px;
+    place-content: center;
+    margin: auto;
+    place-self: center;
+    text-align: center;
+    margin-top: 10%;
+    align-self: center;
+    justify-items: center;
+
+    .stripePaymentAmount {
+        margin: 20px;
+        min-height: 200px;
+        place-content: center;
+        width: 48%;
+
+        .amountText {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .amountTextBox {
+            margin: 20px;
+        }
+
+        .stripe-payment-form {
+            width: 60%;
+            margin: auto;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        .text-danger {
+            display: block;
+            text-align: end;
+        }
+
+        .form-group {
+            label {
+                font-weight: 500;
+            }
+
+            input {
+                border-radius: 10px;
+                border-color: #666EE8;
+            }
+        }
+
+        .stripeAccountInvalid {
+            text-align: center;
+            font-size: 16px;
+            width: 60%;
+            margin: auto;
+        }
+    }
+}
+
+.donation_amount_btn {
+    color: #546E7A;
+    background-color: #fff;
+    border-color: #546E7A;
+    height: 40px;
+    width: 80px;
+}
+
+@media (max-width: 1028px)
+{
+    .stripePaymentContainer {
+        .stripePaymentAmount {
+            width: auto;
+        }
+    }
+}
+
+@media (max-width: 768px)
+{
+    .stripePaymentContainer {
+        .stripePaymentAmount {
+            width: auto;
+            .stripe-payment-form {
+                width: auto;
+            }
+            .stripeAccountInvalid {
+                width: auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,84 @@
+
+
+.text-theme-colored {
+    color: #546E7A !important;
+}
+.text-color{
+    color: #696969;
+}
+
+@media (min-width: 992px){
+    .carousel-caption {
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: right;
+    }
+}
+@media (max-width: 991px){
+    .carousel-caption {
+        top: 0;
+        text-align: right;
+    }
+}
+
+.top-bar {
+    padding: .5rem 0;
+    background: #546E7A;
+}
+.top-bar a {
+    color: #fff;
+}
+
+.sticky-wrapper .site-navbar {
+    background-color: #f5f5f5;
+}
+.sticky-wrapper .site-navbar {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+.site-navbar {
+    margin-bottom: 0;
+    z-index: 1999;
+    position: relative;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.site-navbar .site-logo {
+    position: absolute;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 3;
+}
+.site-navbar .site-navigation .site-menu {
+    margin-bottom: 0;
+}
+.site-navbar .site-navigation .site-menu>li {
+    display: inline-block;
+}
+.site-navbar .site-navigation .site-menu>li>a {
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 20px 0;
+    color:#888!important;
+    display: inline-block;
+    text-decoration: none!important;
+}
+
+.sticky-wrapper{
+    position: sticky;
+    top: 0px;
+    background: #fff;
+    z-index: 999;
+}
+
+.btn-theme-colored {
+    color: #fff;
+    background-color: #546E7A;
+    border-color: #546E7A;
+}

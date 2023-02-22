@@ -1,0 +1,52 @@
+<div class="signin-container"></div>
+<div class="signin-cover-bg"></div>
+<div class="signin-body">
+    <div class="row h10 overflow-hidden">
+        <div class="col-sm-12 col-md-6 marign-padding-none desktop-h10" style="position:relative;">
+            <img class="w10 h10 mobile-width100" src="/assets/login.avif" alt="">
+            <div class="signin-part">
+                <div class="signin-part-body">
+                    <h1 class="signin-font pb-2">𝑳𝒐𝒈𝒊𝒏</h1>
+                    <p class="pb-2 mobile-dis-none">Please enter your login information to sign in<br/> and visit our site</p>
+                    <div class="pt-5 mobile-p-none w10">
+                        <p class="">Don't have an account?</p>
+                    </div>
+                    <div class="signin-box">
+                        <a routerLink="/signUp">
+                            <button class="signin-button">
+                                sign up
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 marign-padding-none mobile-h10" style="background: white; display: flex; flex-direction: column;">
+            <form class="form-card">
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-12 flex-column d-flex">
+
+                        <label class="text-color">Username <span class="text-danger"> *</span>
+                        </label>
+
+                        <input type="text" id="fname" [(ngModel)]="username" class="form-control p3 mobile-p1" name="fname" placeholder="Username ">
+                    </div>
+
+                    <div class="form-group col-12 flex-column d-flex mt-3">
+                        <label class="text-color">Password<span class="text-danger"> *</span></label>
+                        <input type="password" id="Pword" [(ngModel)]="password" name="Pword" class="form-control p3 mobile-p1" placeholder="Password">
+                    </div>
+                </div>
+
+
+                <div class="row mt-3">
+                    <div class="col-12 text-right">
+                        <button class="btn  w-100 login-button" (click)="LogIn(username,password)">LogIn</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

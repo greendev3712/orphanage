@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* Importing Bootstrap SCSS file. */
+
+@import '~bootstrap/scss/bootstrap';
+html,
+body {
+    height: 100%;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1ca0db;
+    border-color: #1ca0db;
+}
+
+.btn-theme-colored {
+    color: #fff;
+    background-color: #546E7A;
+    border-color: #546E7A;
+}
+
+.text-theme-colored {
+    color: #546E7A !important;
+}
+
+.text-color {
+    color: #777;
+}
+
+.btn-theme-colored {
+    color: #fff;
+    background-color: #546E7A;
+    border-color: #546E7A;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+
+@import '~bootstrap/scss/bootstrap';
+.pac-container {
+    z-index: 2147483647 !important;
+}
+
+@import '~ngx-toastr/toastr';
+// bootstrap style toast
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+@import '~ngx-toastr/toastr-bs4-alert';
+// if you'd like to use it without importing all of bootstrap it requires
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
+.toast-container {
+    color: #000;
+}
+
+.toast-container .ngx-toastr {
+    color: #000;
+}

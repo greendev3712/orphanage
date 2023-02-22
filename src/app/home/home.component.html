@@ -1,0 +1,204 @@
+<!-- <div class="row">
+    <div class="col-12 mt-4 px-0" style="border-bottom: 1px solid #eee;">
+        <div class="d-flex px-3 py-2" style="box-shadow: 0px 0px 5px 3px #eee;">
+            <div style="width: 150px;">
+                <img style="width: 100%;border-radius: 5px;margin-top: 10px;" src="../../assets/orphonage1.jpeg" alt="">
+            </div>  
+            <div style="width: calc(100% - 150px);">
+                <div class="d-flex ml-3" style="justify-content: space-between;align-items: center;">
+                    <h6 style="margin: 0;"> orphanages Name 1</h6>
+                    <div><Button class="btn btn-sm btn-primary"> Donate</Button></div> 
+                </div>
+                <div class="ml-3">
+                    <span style="font-size:15px;opacity: 0.8;">
+                        <i class="fas fa-map-marker-alt"></i>
+                         localisation 1
+                    </span>
+                </div>
+                <div class="ml-3">
+                    <span style="font-size:15px;opacity: 0.8;">
+                        <i class="far fa-envelope-open"></i>
+                         Email@domaine.com
+                    </span>
+                </div>
+                <div class="ml-3">
+                    <span style="font-size:15px;opacity: 0.8;">
+                        <i class="fas fa-users"></i>
+                         502  Students
+                    </span>
+                </div>
+
+                <div class="ml-3">
+                    <span style="font-size:15px;">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem, accusantium provident est voluptatum officia in labore necessitatibus, cumque eveniet libero, eum doloremque? Dolorum animi atque illo aliquid ipsa nulla fugiat?
+                    </span>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    
+</div> -->
+
+
+
+<div class="picsum-img-wrapper" [ngStyle]="{'height': heightScreen + 'px'}">
+    <div
+        style="background: url(../../assets/bg.jpg)
+           ;height: 100%;background-position: center;background-repeat: no-repeat;background-size: cover;position: relative;">
+
+        <div style="height: 100%;background: #00000066;"></div>
+        <div class="carousel-caption w-50 ml-auto">
+            <h1 class="text-white text-uppercase " style="font-size: 2.5rem;">Donate</h1>
+            <h2 class="text-white text-uppercase " style="font-size: 1.5rem;">For The Helpless PEOPLE</h2>
+            <p class="text-white font-weight-400 mb-sm-10 mt-sm-0">THE GODS HAND connects nonprofits, donors, and
+                companies in nearly every
+                country in the world. We help fellow nonprofits access the funding, tools,
+                training, and support they need to serve their communities</p>
+            <a class="btn btn-colored btn-theme-colored btn-flat smooth-scroll-to-target"
+                (click)="globalService.where = ''" routerLink="orphenages">Donate
+                Now</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="container">
+
+    <h2 class="my-5 mb-0 mb-lg-5 text-uppercase text-center">Our <span class=" text-theme-colored">ORGANISATIONS.</span>
+    </h2>
+
+
+    <div class="row">
+        <div class="col-12 col-lg-4 pt-3 my-lg-0" (click)="globalService.where = ''"
+            *ngFor="let orphonage of orphonages">
+            <div style="box-shadow: 0px 0px 3px 2px #ddd;min-height: 400px;border-radius: 10px;min-height: 440px;
+            max-height: 520px;">
+                <div style="height: 180px;position: relative;background-color: rgb(0, 0, 0);">
+
+
+
+                    <ng-container *ngIf="orphonage.photos_links && orphonage.photos_links[0] && orphonage.photos_links[0].length != 0">
+                        <div (click)="goToDetails(orphonage)"
+                            [ngStyle]="{'background-image':'url('+globalService.web_site+orphonage.photos_links[0].filepath+')'}"
+                            style="cursor: pointer;height: 180px;background-position: center;background-size: contain;background-repeat: no-repeat;border-top-left-radius: 10px;border-top-right-radius: 10px;">
+
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="px-2 py-3" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                    <div>
+                        <div class="d-flex" style="align-items: center;justify-content: space-between;">
+                            <!-- Heading -->
+                            <h5 class="text-theme-colored mb-0" (click)="goToDetails(orphonage)"
+                                style="cursor:pointer;width: 100%; font-weight: 500;font-size: 19px;text-align: center;text-transform: capitalize; height: 60px; color:rgba(0, 140, 155, 1) !important">
+                                {{globalService.getSize("Your support will help for poor vulnerable children.",55)}}
+                            </h5>
+
+                            <!-- <span *ngIf="token.getUser().is_admin" (click)="deleteOrphonage(orphonage.id)"
+                                style="display: inline;cursor: pointer;"><svg style="height: 18px;fill: #c30000;"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path
+                                        d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z" />
+                                </svg>
+                            </span> -->
+
+                        </div>
+                    </div>
+                    <!-- THE NAME OF
+THE CHARITY WHO IS RUNNING THIS CAMPAIGN -->
+                    <div class="ml-1 mt-3 row" style="align-items: center;">
+                        <img style="width: 30px !important; margin-left: 10px;" src="../../assets/by_icon.jpg"/>
+                        <span style="font-size: 14px;max-width: 296px;" class="text-color; mx-1">{{"by " + orphonage.name}}
+                        </span>
+                    </div>
+
+                    <div class="mt-3 text-center">
+                        <a class="btn btn-theme-colored" (click)="goToDonate(orphonage)">Donate Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 text-right mt-5">
+            <a style="color: #696969 ;display: block;" (click)="globalService.where = ''" routerLink="orphenages"
+                class="text-center">MORE ORGANISATIONS <i class="far px-2 fa-arrow-alt-circle-right"></i></a>
+        </div>
+    </div>
+
+    <h2 class="my-5 text-uppercase text-center">About <span class=" text-theme-colored">Us.</span></h2>
+
+    <div class="row">
+        <div class="col text-center">
+            <img src="../../assets/logo3.svg" style="height: 300px;" alt="">
+        </div>
+        <div class="col">
+            <h2>How You Can Help?</h2>
+            <p class="lead text-theme-colored">Your support will help us to make life better living for poor vulnerable
+                children.</p>
+            <p class="text-color">There are soo many ways to help all those who are connected with us, one of
+                them is to donate through our online direct payment system where your funds
+                get directly transferred to the bank account of a selected NGO or organization.
+                We are here to mediate the entire process after doing in-depth research on the
+                authenticity of organizations and NGOs.</p>
+            <a style="color: #696969 ;display: block;" class="text-right" href="/aboutUs">Show More <i
+                    class="far px-2 fa-arrow-alt-circle-right"></i></a>
+        </div>
+    </div>
+
+    <!--    <h2 class="my-5 text-uppercase text-center">Conatct <span class=" text-theme-colored">Us.</span></h2>
+
+    <div class="row">
+        <div class="col-12">
+            <form class="form-card">
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+
+                        <label class="text-color">First name<span class="text-danger"> *</span>
+                        </label>
+
+                        <input type="text" id="fname" class="form-control" name="fname"
+                            placeholder="Enter your first name">
+                    </div>
+
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Last name<span class="text-danger"> *</span></label>
+                        <input type="text" id="lname" name="lname" class="form-control"
+                            placeholder="Enter your last name">
+                    </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Business email<span class="text-danger"> *</span></label>
+                        <input type="text" id="email" name="email" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Phone number<span class="text-danger"> *</span></label>
+                        <input type="text" id="mob" name="mob" placeholder="" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-12 flex-column d-flex">
+                        <label class="text-color">Type your message here<span class="text-danger"> *</span></label>
+                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <a class="btn btn-colored btn-theme-colored btn-flat smooth-scroll-to-target"
+                            href="#donate-now">Contact</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div> -->
+
+    <app-contact-us></app-contact-us>
+
+</div>

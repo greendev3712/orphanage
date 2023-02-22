@@ -1,0 +1,92 @@
+<div class="signup-container"></div>
+<div class="signup-cover-bg"></div>
+<div class="signup-body">
+    <div class="row h10" style="overflow: auto; border-radius:8px">
+        <div class="col-sm-12 col-md-6 marign-padding-none desktop-h10" style="position:relative;">
+            <img class="w10 h10 mobile-width100" src="/assets/signup.avif" alt="">
+            <div class="signup-part">
+                <div class="signup-part-body">
+                    <h1 class="signup-font pb-2">𝑺𝒊𝒈𝒏 𝑼𝒑</h1>
+                    <p class="pb-2 mobile-p-none mobile-dis-none">Please enter your details to sign up and be <br/> part of our great community</p>
+                    <div class="pt-5 mobile-p-none w10">
+                        <p class="">Already have an account?</p>
+                    </div>
+                    <div class="w10 signin-box">
+                        <a routerLink="/login">
+                            <button class="signin-button">
+                                Login
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 marign-padding-none overflow-auto" style="background: white; display: flex; flex-direction: column;">
+            <form class="form-card">
+                <!-- <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            
+                            <label class="text-color">First name<span class="text-danger"> *</span>
+                            </label>
+                            
+                            <input type="text" id="user.fname" [(ngModel)]="user.fname" class="form-control" name="fname"
+                            placeholder="Enter your first name">
+                        </div>
+                        
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="text-color">Last name<span class="text-danger"> *</span></label>
+                                <input type="text" id="user.lname" name="lname" class="form-control"
+                                    placeholder="Enter your last name">
+                            </div>
+                        </div> -->
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">FIRST NAME<span class="text-danger"> *</span></label>
+                        <input type="text" id="firstname" [(ngModel)]="user.fname" name="first" class="form-control p3 mobile-p1" placeholder="">
+                    </div>
+
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">LAST NAME<span class="text-danger"> *</span></label>
+                        <input type="text" id="lastname" [(ngModel)]="user.lname" name="last" class="form-control p3 mobile-p1" placeholder="">
+                    </div>
+                </div>
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-12 flex-column d-flex">
+                        <label class="text-color">USERNAME<span class="text-danger"> *</span></label>
+                        <input type="text" id="firstname" [(ngModel)]="user.username" name="first" class="form-control p3 mobile-p1" placeholder="">
+                    </div>
+                </div>
+
+                <div class="row justify-content-between text-left">
+
+                    <div class="form-group col-sm-12 flex-column d-flex">
+                        <label class="text-color">Email<span class="text-danger"> *</span></label>
+                        <input type="text" id="email" [(ngModel)]="user.email" name="email" class="form-control p3 mobile-p1" placeholder="">
+                        <!-- <label class="text-color">Phone number<span class="text-danger"> *</span></label>
+                        <input type="text" id="mob" [(ngModel)]="user.phone_no" name="mob" placeholder="" class="form-control"> -->
+                    </div>
+                </div>
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-12 flex-column d-flex">
+                        <label class="text-color">Password<span class="text-danger"> *</span></label>
+                        <input type="password" id="passe" [(ngModel)]="user.password" name="passe" class="form-control p3 mobile-p1" placeholder="">
+                    </div>
+
+                    <!-- <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="text-color">Confiramtion Password<span class="text-danger"> *</span></label>
+                        <input type="password" id="passeConfi" [(ngModel)]="user.passeConfi" name="passeConfi" placeholder="" class="form-control">
+                    </div> -->
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12 text-right">
+                        <a class="btn signup-button" (click)="register(user)">Sign Up</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
